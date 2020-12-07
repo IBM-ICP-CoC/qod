@@ -6,21 +6,15 @@
   tasks:
   - name: Install MySQL
     apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
-   # sudo: yes
     with_items:
     - python-mysqldb
     - mysql-server
-  #- name: copy cnf
-  #  copy: src=.my.cnf dest=~/.my.cnf owner=ubuntu mode=0644
-  #  sudo: yes
   - name: Start the MySQL service
-   # sudo: yes
     service: 
       name: mysql 
       state: started
       enabled: true
   - name: update mysql root password for all root accounts
- #   sudo: yes
     mysql_user: 
       name: root 
       host: "{{ item }}" 
@@ -34,3 +28,7 @@
       - 127.0.0.1
       - ::1
       - localhost 
+  - name: Create a new database with name 'bobdata'
+    mysql_db:
+      name: bobdata
+      state: present
