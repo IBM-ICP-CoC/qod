@@ -1,5 +1,5 @@
 - hosts: all
-  user: ubuntu
+  user: coc
   become: true
   vars:
     mysql_root_password: fart
