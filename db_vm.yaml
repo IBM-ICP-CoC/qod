@@ -30,5 +30,7 @@
       - localhost 
   - name: Create a new database with name 'quotes'
     mysql_db:
+      login_user: root
+      login_password: "{{ mysql_root_password }}"
       name: quotes
       state: present
