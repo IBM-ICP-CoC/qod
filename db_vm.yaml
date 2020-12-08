@@ -30,5 +30,8 @@
       - localhost 
   - name: Create a new database with name 'bobdata'
     mysql_db:
+      check_implicit_admin: yes
+      login_user: coc
+      login_password: "{{ coc_password }}"
       name: bobdata
       state: present
