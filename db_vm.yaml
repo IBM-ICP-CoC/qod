@@ -28,23 +28,7 @@
       - 127.0.0.1
       - ::1
       - localhost 
-  - name: add coc user
-    mysql_user: 
-      name: coc 
-      host: "{{ item }}" 
-      password: "{{ coc_password }}"
-      login_user: coc
-      login_password: "{{ mysql_root_password }}"
-      check_implicit_admin: yes
-      priv: "*.*:ALL,GRANT"
-    with_items:
-      - "{{ ansible_hostname }}"
-      - 127.0.0.1
-      - ::1
-      - localhost 
-  - name: Create a new database with name 'bobdata'
+  - name: Create a new database with name 'quotes'
     mysql_db:
-      login_user: coc
-      login_password: "{{ coc_password }}"
-      name: bobdata
+      name: quotes
       state: present
