@@ -27,7 +27,8 @@
       - "{{ ansible_hostname }}"
       - 127.0.0.1
       - ::1
-      - localhost 
+      - localhost
+      - 0.0.0.0
   - name: Create a new database with name 'quotes'
     mysql_db:
       login_user: root
