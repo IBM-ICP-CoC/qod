@@ -4,6 +4,7 @@
   vars:
     mysql_root_password: fart
   tasks:
+  
   - name: Install python3
     apt: 
       name: python3
@@ -14,15 +15,24 @@
       state: present  
   - name: Install PyMySQL
     command: python3 -m pip install PyMySQL
+    
   - name: Install MySQL
     apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
     with_items:
     - mysql-server
+    
   - name: Enable external access
     replace:
       path: /etc/mysql/mysql.conf.d/mysqld.cnf
       regexp: '(bind-address.*)'
       replace: '#\1'
+      
+  - name: Set initial password
+    lineinfile:
+      path: /Users/mdtutorials2/Documents/Ansible/Input.txt
+      line: 'password: {{ mysql_root_password }}'
+      insertbefore: BOF
+      
   - name: Start the MySQL service
     service: 
       name: mysql 
