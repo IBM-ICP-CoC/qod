@@ -4,8 +4,13 @@
   vars:
     mysql_root_password: fart
   tasks:
+  - name: Install python3
+    apt: python3
+    state: present
+  - name: Install PyMySQL
+    command: python3 -m pip install PyMySQL
   - name: Install MySQL
-    apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
+    apt: name=['mysql-server'] update_cache=yes cache_valid_time=3600 state=present
     with_items:
     - mysql-server
   - name: Enable external access
