@@ -29,13 +29,13 @@
       state: started
       enabled: true
 
-  - name: Set root password
+  - name: Set root password {{mysql_root_password.stdout}}
     mysql_user: user=root password="{{mysql_root_password.stdout}}" host=localhost
-    when: is_root_password_set.rc == 0
+#    when: is_root_password_set.rc == 0
 
   - name: Set root password for other hosts
     mysql_user: user=root password="{{mysql_root_password.stdout}}" host="{{item}}" login_user="root" login_host="localhost" login_password="{{mysql_root_password.stdout}}"
-    when: is_root_password_set.rc == 0
+#    when: is_root_password_set.rc == 0
     with_items:
       - "127.0.0.1"
       - "%"
