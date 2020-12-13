@@ -54,6 +54,5 @@
       name: bob
       password: "12345"
       priv: 'quotes.*:ALL,GRANT'
-      host_all: yes
       state: present
 
