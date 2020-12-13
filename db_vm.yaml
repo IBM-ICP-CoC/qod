@@ -4,15 +4,6 @@
   vars:
     mysql_root_password: fart
   tasks:
-  
-#  - name: Install python3
-#    apt: 
-#      name: python3
-#      state: present
-#  - name: Install pip
-#    apt: 
-#      name: python3-pip
-#      state: present  
 
   - name: Install MySQL
     apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
@@ -62,7 +53,7 @@
       login_unix_socket: /var/run/mysqld/mysqld.sock
       name: bob
       password: "12345"
-      priv: '*.*:ALL,GRANT'
+      priv: 'quotes.*:ALL,GRANT'
       host_all: yes
       state: present
 
