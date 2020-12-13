@@ -39,7 +39,7 @@
       host: "{{ item }}"
       login_user: root
       password: "{{ mysql_root_password }}"
-      check_implicit_admin=yes
+      check_implicit_admin: yes
 
   - name: Create a new database with name 'quotes'
     mysql_db:
