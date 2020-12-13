@@ -29,7 +29,7 @@
       
   - name: Set initial password
     lineinfile:
-      path: /Users/mdtutorials2/Documents/Ansible/Input.txt
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
       line: 'password: {{ mysql_root_password }}'
       insertbefore: BOF
       
