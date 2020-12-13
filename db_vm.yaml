@@ -2,7 +2,7 @@
   user: coc
   become: true
   vars:
-    mysql_root_password: fart
+    mysql_root_password: fart  # change later to use variable passed into playbook
   tasks:
 
   - name: Install MySQL
@@ -30,12 +30,25 @@
       state: started
       enabled: true
 
-  - name: Create a new database with name 'quotes'
+  - name: Create a new database with name 'qod'
     mysql_db:
       login_user: root
       login_unix_socket: /var/run/mysqld/mysqld.sock
-      name: quotes
+      name: qod
       state: present
+
+  - name: Copy DB SQL files
+    copy:
+      src: '*.sql'
+      dest: '/tmp/qod/'
+      force: yes
+      
+  - name: Copy DB SQL files
+    copy:
+      src: '*.sql'
+      dest: '/tmp/qod/'
+      force: yes
+      owner: mysql
       
   - name: Create DBuser
     mysql_user:
@@ -43,7 +56,7 @@
       login_unix_socket: /var/run/mysqld/mysqld.sock
       name: bob
       password: "12345"
-      priv: 'quotes.*:ALL/*.*:PROCESS'
+      priv: 'qod.*:ALL/*.*:PROCESS'
       host: '%'
       state: present
       
