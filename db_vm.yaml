@@ -27,12 +27,6 @@
       regexp: '(bind-address.*)'
       replace: '#\1'
       
-  - name: Set initial password
-    lineinfile:
-      path: /etc/mysql/mysql.conf.d/mysqld.cnf
-      insertafter: '^\[mysqlq\]'
-      line: 'password: {{ mysql_root_password }}'
-      
   - name: Start the MySQL service
     service: 
       name: mysql 
@@ -42,14 +36,10 @@
   - name: update mysql root password for all root accounts
     mysql_user: 
       name: root 
+      host: "{{ item }}"
       login_user: root
-      login_password: "{{ mysql_root_password }}"
-      host: "%" 
       password: "{{ mysql_root_password }}"
-      check_implicit_admin: yes
-      priv: "*.*:ALL,GRANT"
-    with_items:
-      - 127.0.0.1
+      check_implicit_admin=yes
 
   - name: Create a new database with name 'quotes'
     mysql_db:
