@@ -3,14 +3,17 @@
   become: true
   vars:
     mysql_root_password: fart  # change later to use variable passed into playbook
-  tasks:
-
-  - name: Install MySQL
-    apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
-    with_items:
+    packages:
     - mysql-server
     - python3
     - python3-pip
+  
+  tasks:
+
+  - name: Install MySQL, python and pip
+    apt: 
+      pkg: {{ packages }} 
+      state: present
 
   - name: Install PyMySQL
     command: python3 -m pip install PyMySQL
@@ -55,7 +58,7 @@
     - 1_createdb.sql
     - 2_authors.sql
     - 3_genres.sql
-    - 4_quotes.sql
+    - 4_quotes_sm.sql
       
   - name: Create DBuser
     mysql_user:
