@@ -38,7 +38,7 @@
       state: present
 
   - name: ls current directory
-    shell: ls
+    shell: pwd
     register: shell_result
 
   - name: out
@@ -71,3 +71,15 @@
     service:
       name: mysql
       state: restarted
+
+  - name: import SQL
+    mysql_db:
+      state: import
+      name: all
+      encoding: latin1
+      target: "{{ item }}"
+    with_items:
+    - 1_createdb.sql
+    - 2_authors.sql
+    - 3_genres.sql
+    - 4_quotes.sql
