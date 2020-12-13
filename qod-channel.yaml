@@ -1,0 +1,12 @@
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: qod-channel
+  namespace: qod-channel-namespace
+  labels:
+    app: qod
+spec:
+  type: Namespace
+  pathname: qod-channel-namespace
+  

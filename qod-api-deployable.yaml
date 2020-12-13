@@ -1,0 +1,70 @@
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: qod-api-channel-deployment
+  namespace: qod-channel-namespace
+  labels:
+    app: qod
+    tier: api
+spec:
+  template:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: qod-api-channel-deployment
+      labels:
+        app: qod
+        tier: api
+    spec:
+        selector:
+          matchLabels:
+            app: qod
+            tier: api
+        template:
+          metadata:
+            labels:
+              app: qod
+              tier: api
+          spec:
+            containers:
+            - name: qod-api
+              image: docker.io/ibmicpcoc/qod-api:latest
+              imagePullPolicy: Always
+              ports:
+              - containerPort: 3000
+              env:
+              - name: DB_HOST
+                value: 169.46.93.131
+              - name: DB_USER
+                value: bob
+              - name: DB_PASS
+                value: "12345"
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: qod-api-channel-service
+  namespace:  qod-channel-namespace
+  labels:
+    app: qod
+    tier: api
+spec:
+  template:
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: qod-api-service
+      labels:
+        app: qod
+        tier: api
+    spec:
+      type: ClusterIP
+      ports:
+        - targetPort: 3000
+          port: 3000
+          protocol: TCP
+          name: http
+      selector:
+        app: qod
+        tier: api

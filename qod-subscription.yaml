@@ -1,0 +1,36 @@
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: qod-subscription
+  namespace: qod-project
+  labels:
+    app: qod
+spec:
+  channel: qod-channel-namespace/qod-channel
+  overrides:
+    - clusterName: /
+      clusterOverrides:
+        - path: metadata.namespace
+          value: qod
+  packageFilter:
+    labelSelector:
+      matchLabels:
+        app: qod
+  placement:
+    placementRef:
+      name: qod-placement-rule
+      kind: PlacementRule
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: qod-placement-rule
+  namespace: qod-project
+  labels:
+    app: qod
+spec:
+  clusterReplicas: 1
+  clusterLabels:
+    matchLabels:  
+      environment: Dev
