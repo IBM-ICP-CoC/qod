@@ -46,4 +46,8 @@
       priv: 'quotes.*:ALL/*.*:PROCESS'
       host: '%'
       state: present
-
+      
+  - name: restart mysql
+    service:
+      name: mysql
+      state: restarted
