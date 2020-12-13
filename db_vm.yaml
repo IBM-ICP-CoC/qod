@@ -47,7 +47,7 @@
 
   - name: Copy DB SQL files
     copy:
-      src: {{ item }}
+      src: "{{ item }}"
       dest: '/tmp/qod/'
       force: yes
       owner: mysql
