@@ -40,6 +40,7 @@
       
   - name: Create DBuser
     mysql_user:
+      login_user: root
       name: bob
       password: "12345"
       priv: '*.*:ALL'
