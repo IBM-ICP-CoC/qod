@@ -30,8 +30,8 @@
   - name: Set initial password
     lineinfile:
       path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      insertafter: '^\[mysqlq\]'
       line: 'password: {{ mysql_root_password }}'
-      insertbefore: BOF
       
   - name: Start the MySQL service
     service: 
