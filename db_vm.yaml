@@ -24,6 +24,9 @@
   - name: Install PyMySQL
     command: python3 -m pip install PyMySQL
     
+  - name: Update firewall rules
+    command: ufw allow 3306/tcp
+    
   - name: Enable external access
     replace:
       path: /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -59,6 +62,7 @@
       login_unix_socket: /var/run/mysqld/mysqld.sock
       name: bob
       password: "12345"
-      priv: '*.*:ALL'
+      priv: '*.*:ALL,GRANT'
+      host_all: yes
       state: present
 
