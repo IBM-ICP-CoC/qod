@@ -81,7 +81,7 @@
       encoding: latin1
       target: "{{ item }}"
     with_items:
-    - /tmp/dod/1_createdb.sql
-    - /tmp/dod/2_authors.sql
-    - /tmp/dod/3_genres.sql
-    - /tmp/dod/4_quotes.sql
+    - /tmp/qod/1_createdb.sql
+    - /tmp/qod/2_authors.sql
+    - /tmp/qod/3_genres.sql
+    - /tmp/qod/4_quotes.sql
