@@ -45,17 +45,6 @@
 #      password: "{{ mysql_root_password }}"
 #      priv: "*.*:ALL,GRANT"
 #    become: yes
-      
-  - name: Create DBuser
-    mysql_user:
-      login_user: root
-      login_password: "{{ mysql_root_password }}"
-      host: "localhost" 
-      name: bob
-      password: "12345"
-      priv: '*.*:ALL'
-      state: present
-
 
   - name: Create a new database with name 'quotes'
     mysql_db:
@@ -63,3 +52,13 @@
       login_password: "{{ mysql_root_password }}"
       name: quotes
       state: present
+      
+  - name: Create DBuser
+    mysql_user:
+      login_user: root
+      login_password: "{{ mysql_root_password }}"
+      name: bob
+      password: "12345"
+      priv: '*.*:ALL'
+      state: present
+
