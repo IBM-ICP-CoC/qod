@@ -12,7 +12,7 @@
 
   - name: Install MySQL, python and pip
     apt: 
-      pkg: {{ packages }} 
+      pkg: "{{ packages }}" 
       state: present
 
   - name: Install PyMySQL
