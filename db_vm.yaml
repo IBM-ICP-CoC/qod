@@ -45,7 +45,7 @@
       
   - name: Copy DB SQL files
     copy:
-      src: '*.sql'
+      src: 'tmp/*.sql'
       dest: '/tmp/qod/'
       force: yes
       owner: mysql
