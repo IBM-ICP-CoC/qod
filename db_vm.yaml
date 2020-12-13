@@ -49,14 +49,14 @@
   - name: Create a new database with name 'quotes'
     mysql_db:
       login_user: root
-      login_password: "{{ mysql_root_password }}"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
       name: quotes
       state: present
       
   - name: Create DBuser
     mysql_user:
       login_user: root
-      login_password: "{{ mysql_root_password }}"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
       name: bob
       password: "12345"
       priv: '*.*:ALL'
