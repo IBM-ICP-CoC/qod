@@ -39,12 +39,6 @@
 
   - name: Copy DB SQL files
     copy:
-      src: '*.sql'
-      dest: '/tmp/qod/'
-      force: yes
-      
-  - name: Copy DB SQL files
-    copy:
       src: 'tmp/*.sql'
       dest: '/tmp/qod/'
       force: yes
