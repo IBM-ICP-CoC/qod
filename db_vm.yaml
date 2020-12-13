@@ -24,7 +24,6 @@
   - name: Install PyMySQL
     command: python3 -m pip install PyMySQL
     
-
   - name: Enable external access
     replace:
       path: /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -38,13 +37,16 @@
       enabled: true
       
   - name: update mysql root password for all root accounts
-      mysql_user: name=root host={{ item }} password={{ mysql_root_password }} priv=*.*:ALL,GRANT
+      mysql_user: 
+        name: root 
+        host: {{ item }} 
+        password: {{ mysql_root_password }}
+        priv: *.*:ALL,GRANT
       with_items:
         - "{{ ansible_hostname }}"
         - 127.0.0.1
         - ::1
         - localhost
-      
       
   - name: Create DBuser
     mysql_user:
