@@ -29,16 +29,6 @@
       name: mysql 
       state: started
       enabled: true
-      
-#  - name: update mysql root password for all root accounts
-#    mysql_user: 
-#      name: root 
-#      login_user: root
-#      login_unix_socket: /var/run/mysqld/mysqld.sock
-#      host: "localhost" 
-#      password: "{{ mysql_root_password }}"
-#      priv: "*.*:ALL,GRANT"
-#    become: yes
 
   - name: Create a new database with name 'quotes'
     mysql_db:
@@ -54,5 +44,6 @@
       name: bob
       password: "12345"
       priv: 'quotes.*:ALL/*.*:PROCESS'
+      host: '%'
       state: present
 
