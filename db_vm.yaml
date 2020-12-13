@@ -37,9 +37,17 @@
       name: qod
       state: present
 
+  - name: ls current directory
+    shell: ls
+    register: shell_result
+
+  - name: out
+    debug:
+      var: shell_result.stdout_lines
+
   - name: Copy DB SQL files
     copy:
-      src: 'tmp/*.sql'
+      src: '1_createdb.sql'
       dest: '/tmp/qod/'
       force: yes
       owner: mysql
