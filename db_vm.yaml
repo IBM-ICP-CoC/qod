@@ -16,7 +16,7 @@
       state: present
 
   - name: Install PyMySQL
-    command: python3 -m pip install PyMySQL
+    command: pip3 install PyMySQL
     
   - name: Update firewall rules
     command: ufw allow 3306/tcp
