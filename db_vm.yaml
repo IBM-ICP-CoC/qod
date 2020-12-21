@@ -40,14 +40,6 @@
       name: qod
       state: present
 
-  - name: ls current directory
-    shell: pwd
-    register: shell_result
-
-  - name: out
-    debug:
-      var: shell_result
-
   - name: Copy DB SQL files
     copy:
       src: "{{ item }}"
