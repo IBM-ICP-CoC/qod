@@ -35,11 +35,11 @@ spec:
               - containerPort: 3000
               env:
               - name: DB_HOST
-                value: 169.46.93.131
+                value: <SOME IP ADDRESS>
               - name: DB_USER
-                value: bob
+                value: <SOME USER NAME>
               - name: DB_PASS
-                value: "12345"
+                value: <SOME PASSWORD>
 ---
 apiVersion: app.ibm.com/v1alpha1
 kind: Deployable
